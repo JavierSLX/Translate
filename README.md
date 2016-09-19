@@ -29,7 +29,7 @@ Cuando tú colocas una URL en tu navegador estás usando un recurso como HTTP, p
 ###Localizador Uniforme de Recursos (URL)
 Una URL es usada para identificar un recurso alojado en la Web. Una URL usa la siguiente sintaxis:
 
-*protocol://hostname:port/path-and-file-name*
+`protocol://hostname:port/path-and-file-name`
 
 Existen 4 partes en una URL:  
 1.	*Protocolo*: El nivel de protocolo que usará el cliente y el servidor, ejemplo: HTTP, FTP y telnet.
@@ -41,23 +41,27 @@ Por ejemplo, en la URL *http://www.nowhere123.com/docs/index.html*, el protocolo
 
 Otro ejemplo de URL es:  
 
-*ftp://www.ftp.org/docs/test.txt   
+~~~  
+ftp://www.ftp.org/docs/test.txt   
 mailto:user@test101.com  
 news:soc.culture.Singapore  
-telnet://www.nowhere123.com/*
+telnet://www.nowhere123.com/  
+~~~  
 
 ###Protocolo HTTP
 Como se mencionó, cuando tú introduces la URL en caja de dirección del navegador, el navegador traduce la URL en un mensaje de requerimiento acordado con el protocolo específico; y envía el mensaje de requerimiento al servidor.  
 
 Por ejemplo, el navegador traduce la URL *http://www.nowhere123.com/doc/index.html* en el siguiente mensaje de requerimiento:  
 
-*GET /docs/index.html HTTP/1.1  
+~~~  
+GET /docs/index.html HTTP/1.1  
 Host: www.nowhere123.com  
 Accept: image/gif, image/jpeg, */*  
 Accept-Language: en-us  
 Accept-Encoding: gzip, deflate  
 User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)  
-(blank line)*
+(blank line)  
+~~~
 
 Con este mensaje de requerimiento, el servidor puede tomar una de las siguientes acciones:
 
@@ -67,17 +71,21 @@ Con este mensaje de requerimiento, el servidor puede tomar una de las siguientes
 
 Un ejemplo de la respuesta de un mensaje HTTP es el siguiente:  
 
-***HTTP/1.1 200 OK**  
+~~~  
+HTTP/1.1 200 OK  
 Date: Sun, 18 Oct 2009 08:56:53 GMT  
 Server: Apache/2.2.14 (Win32)  
-Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT*  
+Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT  
+~~~
 
-*ETag: "10000000565a5-2c-3e94b66c2e680"   
+~~~  
+ETag: "10000000565a5-2c-3e94b66c2e680"   
 Accept-Ranges: bytes  
 Content-Length: 44  
 Connection: close  
-**Content-Type: text/html**  
-X-Pad: avoid browser bug*
+Content-Type: text/html  
+X-Pad: avoid browser bug  
+~~~
 
 El servidor recibe el mensaje de respuesta, interpreta el mensaje y muestra el contenido del mensaje en la ventana del navegador acordando el tipo de datos de la respuesta (como el tipo de encabezado de respuesta del contenido). Los datos comunes de datos incluyen “texto/plano”, “texto/html”, “imagen/gif”, “imagen/jpeg”, “audio/mpeg”, “video/mpeg”, “application/msword”, y “aplicación”pdf”.  
 
@@ -129,7 +137,7 @@ La primera línea de la cabecera es llamada línea de requerimiento, seguida por
 
 La sintaxis de la línea de requerimiento es la siguiente:  
 
-*request-method-name request-URI HTTP-version*  
+`request-method-name request-URI HTTP-version`  
 
 - *request-method-name*: El protocolo HTTP define los métodos de requerimiento, ej. GET, POST, HEAD, y OPTIONS. El cliente puede usar uno de estos métodos para enviar el requerimiento del servidor.
 - *request-URI*: Recursos específicos requeridos.
@@ -137,21 +145,25 @@ La sintaxis de la línea de requerimiento es la siguiente:
 
 Ejemplos de líneas de requerimiento:  
 
-*GET /test.html HTTP/1.1  
+~~~  
+GET /test.html HTTP/1.1  
 HEAD /query.html HTTP/1.0  
-POST /index.html HTTP/1.1*  
+POST /index.html HTTP/1.1  
+~~~   
 
 ####Cabeceras de requerimiento  
 Las cabeceras de requerimiento son en forma de nombre: valores pares. Multiples valores, separados por comas, puede ser específicos.  
 
-*request-header-name: request-header-value1, request-header-value2, ...*  
+`request-header-name: request-header-value1, request-header-value2, ...`  
 
 Ejemplos de cabeceras de requerimientos son:  
 
-*Host: www.xyz.com  
+~~~  
+Host: www.xyz.com  
 Connection: Keep-Alive  
 Accept: image/gif, image/jpeg,  
-Accept-Language: us-en, fr, cn*  
+Accept-Language: us-en, fr, cn  
+~~~
 
 ####Ejemplo  
 
@@ -168,7 +180,7 @@ El formato de respuesta de un mensaje HTTP es el siguiente:
 La primera línea es llamada como línea de estado, seguida de la cabecera opcional de respuesta.
 El estado de la línea tiene la siguiente sintaxis:
 
-*HTTP-version status-code reason-phrase*  
+`HTTP-version status-code reason-phrase`  
 
 - *HTTP-version*: La versión de HTTP usada en esta sesión. Puede ser HTTP/1.0 y HTTP/1.1.
 - *status-code*: Un número generado de 3 dígitos por el servidor que refleja la salida de requerimiento.
@@ -177,21 +189,25 @@ El estado de la línea tiene la siguiente sintaxis:
 
 Ejemplos de la línea de estado son:  
 
-*HTTP/1.1 200 OK  
+~~~  
+HTTP/1.1 200 OK  
 HTTP/1.0 404 Not Found  
-HTTP/1.1 403 Forbidden* 
+HTTP/1.1 403 Forbidden  
+~~~
 
 ####Cabeceras de respuesta  
 Las cabeceras de respuesta son de cierta forma, valores pares:  
 
-*response-header-name: response-header-value1, response-header-value2, ...*
+`response-header-name: response-header-value1, response-header-value2, ...`
 
 Ejemplos de cabeceras de respuesta son:  
 
-*Content-Type: text/html  
+~~~  
+Content-Type: text/html  
 Content-Length: 35  
 Connection: Keep-Alive  
-Keep-Alive: timeout=15, max=100*  
+Keep-Alive: timeout=15, max=100  
+~~~  
 
 El mensaje de cuerpo de respuesta contiene los datos de requerimiento.  
 
@@ -218,10 +234,12 @@ El protocolo HTTP define una variedad de métodos de requerimiento. Un cliente p
 ###Método de requerimiento “GET”  
 GET es el método de requerimiento más común en HTTP. Un cliente puede usar el método GET para solicitar una sola cosa como recurso de un servidor HTTP. Un mensaje de requerimiento GET toma la siguiente sintaxis:  
 
-*GET request-URI HTTP-version  
+~~~  
+GET request-URI HTTP-version  
 (optional request headers)  
 (blank line)  
-(optional request body)*
+(optional request body)  
+~~~  
 
 - La palabra GET es sensitivo a lo que se debe de escribir en mayúscula.  
 - *request-URI*: Especifica la parte del recurso requerido, con esto debe de comenzar con la raíz “/” del directorio base del documento.  
@@ -235,14 +253,16 @@ Existen algunas formas de testear los requerimientos HTTP. Tú puedes usar un pr
 ####Telnet  
 “Telnet” es una utilidad de red muy usada. Tú puedes usar telnet para establecer una conexión TCP con un servidor, y seguir un requerimiento HTTP. Por ejemplo, supongamos que tu comienzas tu servidor HTTP en localhost (dirección IP 127.0.0.1) en el puerto 8000:  
 
-*> telnet  
+~~~  
+> telnet  
 telnet> help  
 ... telnet help menu ...  
 telnet> open 127.0.0.1 8000  
 Connecting To 127.0.0.1...  
 GET /index.html HTTP/1.0  
 (Hit enter twice to send the terminating blank line ...)  
-... HTTP response message ...*
+... HTTP response message ...  
+~~~
 
 Telnet es protocolo basado en caracteres. Cada carácter que tú ingreses en el cliente de Telnet será enviado al servidor inmediatamente.  En cualquier caso, tu no puedes ingresar algún tipo de acción especial, como la tecla de borrado porque se enviarán como tal al servidor. Tú puedes habilitar la opción “local echo” para ver los caracteres que colocas. Checa el manual de telnet (busca en la ayuda de Windows) para más detalle de como usar telnet.  
 
@@ -251,6 +271,7 @@ Tú puedes escribir tú propio programa de red para observar los requerimientos 
 
 Un ejemplo de un programa de red escrito en Java se muestra a continuación (asumiendo que el servidor HTTP está corriendo en localhost (dirección IP 127.0.0.1) en el puerto 8000):  
 
+~~~  
 import java.net.*;  
 import java.io.*;  
    
@@ -282,14 +303,18 @@ public class HttpClient {
       out.close();  
    }  
 }  
+~~~
 
 ###Requerimiento GET HTTP/1.0  
 Lo siguiente muestra la respuesta de un requerimiento GET en HTTP/1.0 (via telnet o con un programa de red – asumiendo que tú hayas comenzado un servidor HTTP):  
 
-*GET /index.html HTTP/1.0  
-(enter twice to create a blank line)*  
+~~~  
+GET /index.html HTTP/1.0  
+(enter twice to create a blank line)  
+~~~    
 
-*HTTP/1.1 200 OK  
+~~~  
+HTTP/1.1 200 OK  
 Date: Sun, 18 Oct 2009 08:56:53 GMT  
 Server: Apache/2.2.14 (Win32)  
 Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT  
@@ -299,7 +324,8 @@ Content-Length: 44
 Connection: close  
 Content-Type: text/html  
 X-Pad: avoid browser bug  
-Connection to host lost.*  
+Connection to host lost.  
+~~~    
 
 En este ejemplo, el cliente usa GET para preguntar por un documento llamado “/index.html”; y negocia usando el protocolo HTPP/1.0. Una línea en blanco se necesita después de la cabecera del requerimiento. Este mensaje de requerimiento no contiene cuerpo.  
 
@@ -350,66 +376,85 @@ Algunos códigos de estado comúnmente encontrados:
 ####Ejemplo: Método de requerimiento Misspelt  
 En el requerimiento, “GET” es cambiado como “get”. El servido regresará un error “501 Method Not Implemented”. La cabecera de respuesta “Allow” le dice al cliente los métodos que seguirá.  
 
-*get /test.html HTTP/1.0  
-(enter twice to create a blank line)*  
+~~~  
+get /test.html HTTP/1.0  
+(enter twice to create a blank line)  
+~~~    
 
-*HTTP/1.1 501 Method Not Implemented  
+~~~  
+HTTP/1.1 501 Method Not Implemented  
 Date: Sun, 18 Oct 2009 10:32:05 GMT  
 Server: Apache/2.2.14 (Win32)  
 Allow: GET,HEAD,POST,OPTIONS,TRACE  
 Content-Length: 215  
 Connection: close  
-Content-Type: text/html; charset=iso-8859-1*  
+Content-Type: text/html; charset=iso-8859-1  
+~~~  
 
 ####Ejemplo: 404 Archivo No Encontrado  
 
 En este requerimiento GET, la URL requerida “/t.html” no puede ser encontrada bajo la documentación del directorio del servidor. El servidor regresa un error “404 Not Found”.  
 
-*GET /t.html HTTP/1.0  
-(enter twice to create a blank line)*
+~~~ 
+GET /t.html HTTP/1.0  
+(enter twice to create a blank line)  
+~~~  
 
-*HTTP/1.1 404 Not Found  
+~~~
+HTTP/1.1 404 Not Found  
 Date: Sun, 18 Oct 2009 10:36:20 GMT  
 Server: Apache/2.2.14 (Win32)  
 Content-Length: 204  
 Connection: close  
-Content-Type: text/html; charset=iso-8859-1*    
+Content-Type: text/html; charset=iso-8859-1  
+~~~    
 
 ####Ejemplo: Mala versión de numeración HTTP  
 En este requerimiento de GET, la versión de HTTP está mal escrita. El servidor regresa un error de “404 Bad Request”. La versión de HTTP debe de ser HTTP/1.0 o HTTP/1.1.  
 
-*GET /index.html HTTTTTP/1.0  
-(enter twice to create a blank line)*
+~~~ 
+GET /index.html HTTTTTP/1.0  
+(enter twice to create a blank line)  
+~~~
 
-*HTTP/1.1 400 Bad Request  
+~~~  
+HTTP/1.1 400 Bad Request  
 Date: Sun, 08 Feb 2004 01:29:40 GMT  
 Server: Apache/1.3.29 (Win32)  
 Connection: close  
-Content-Type: text/html; charset=iso-8859-1*    
+Content-Type: text/html; charset=iso-8859-1  
+~~~    
 
 Nota: La última versión de Apache 2.2.14 ignora este error y regresa el documento con código de estado “200 OK”.  
 
 ####Ejemplo: Mal requerimiento URI  
 En el siguiente requerimiento GET, la dirección requerida no comienza desde la raíz “/”, resultando en un “Bad request”.  
 
-*GET test.html HTTP/1.0  
-(blank line)*  
+~~~
+GET test.html HTTP/1.0  
+(blank line)  
+~~~  
 
-*HTTP/1.1 400 Bad Request  
+~~~  
+HTTP/1.1 400 Bad Request  
 Date: Sun, 18 Oct 2009 10:42:27 GMT  
 Server: Apache/2.2.14 (Win32)  
 Content-Length: 226  
 Connection: close  
-Content-Type: text/html; charset=iso-8859-1*    
+Content-Type: text/html; charset=iso-8859-1  
+~~~    
 
 ####Ejemplo: Mantiene la conexión viva  
 Por default, HTTP/1.0, cierra la conexión TCP una vez que la respuesta es liberada. Tú puedes requerir que la conexión TCP se mantenga (entonces puedes enviar otro requerimiento usando la misma conexión TCP, probando la eficiencia de la red), usando una cabecera de requerimiento opcional “Connection: Keep-Alive”. El servidor incluye una “Connection: Keep-Alive” responde a la cabecera para informar al cliente que puede enviar otro requerimiento usando esta conexión, antes de que el tiempo de conexión venza. Otra cabecera “Keep-Alive: timeout=x, max=x” le dice al cliente el tiempo que queda (en segundos) y el máximo número de requerimientos que pueden ser enviados por esta conexión persistente.  
 
-*GET /test.html HTTP/1.0  
+~~~  
+GET /test.html HTTP/1.0  
 Connection: Keep-Alive  
-(blank line)*  
+(blank line)  
+~~~    
 
-*HTTP/1.1 200 OK  
+~~~  
+HTTP/1.1 200 OK  
 Date: Sun, 18 Oct 2009 10:47:06 GMT  
 Server: Apache/2.2.14 (Win32)  
 Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT  
@@ -418,7 +463,8 @@ Accept-Ranges: bytes
 Content-Length: 44  
 Keep-Alive: timeout=5, max=100  
 Connection: Keep-Alive  
-Content-Type: text/html*  
+Content-Type: text/html  
+~~~    
 
 Notas:  
 
@@ -430,21 +476,27 @@ Notas:
 ####Ejemplo: Accesando a un recurso protegido.  
 El siguiente requerimiento GET intenta acceder a un recurso protegido. El servidor regresa un error “403 Forbidden”. En este ejemplo, el directorio “htdocs\forbidden” está configurado para negar todo acceso al servidor HTTP Apache al archivo “http.conf” como sigue:  
 
-*<Directory "C:/apache/htdocs/forbidden">  
+~~~  
+<Directory "C:/apache/htdocs/forbidden">  
    Order deny,allow  
    deny from all  
-</Directory>*  
+</Directory>  
+~~~    
 
-*GET /forbidden/index.html HTTP/1.0  
-(blank line)*  
+~~~  
+GET /forbidden/index.html HTTP/1.0  
+(blank line)  
+~~~  
 
-*HTTP/1.1 403 Forbidden  
+~~~  
+HTTP/1.1 403 Forbidden  
 Date: Sun, 18 Oct 2009 11:58:41 GMT  
 Server: Apache/2.2.14 (Win32)  
 Content-Length: 222  
 Keep-Alive: timeout=5, max=100  
 Connection: Keep-Alive  
-Content-Type: text/html; charset=iso-8859-1*  
+Content-Type: text/html; charset=iso-8859-1  
+~~~    
 
 ###Requerimiento GET HTTP/1.1  
 
@@ -453,31 +505,39 @@ El servidor HTTP/1.1 soporta los auto llamados hosts virtuales. Estos es, lo mis
 ####Ejemplo: Requerimiento HTTP/1.1  
 HTTP/1.1 se mantiene persistente (o viva) la conexión por default y provee eficiencia en la red. Tu puedes usar una cabecera de requerimiento “Connection: Close”  para preguntar al servidor si cierra la conexión TCP una vez que la respuesta ha sido liberada.  
 
-*GET /index.html HTTP/1.1  
+~~~  
+GET /index.html HTTP/1.1  
 Host: 127.0.0.1  
-(blank line)*  
+(blank line)  
+~~~    
 
-*HTTP/1.1 200 OK  
+~~~  
+HTTP/1.1 200 OK  
 Date: Sun, 18 Oct 2009 12:10:12 GMT  
 Server: Apache/2.2.14 (Win32)  
 Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT  
 ETag: "10000000565a5-2c-3e94b66c2e680"  
 Accept-Ranges: bytes  
 Content-Length: 44  
-Content-Type: text/html*  
+Content-Type: text/html  
+~~~    
 
 ####Ejemplo: HTTP/1.1 Cabecera de Host perdida  
 El siguiente ejemplo muestra la cabecera del “Host” es mandado en un requerimiento HTTP/1.1. Si la cabecera del “Host” está perdida, el servidor regresa un error “400 Bad Request”.  
 
-*GET /index.html HTTP/1.1  
-(blank line)*  
+~~~  
+GET /index.html HTTP/1.1  
+(blank line)  
+~~~    
 
-*HTTP/1.1 400 Bad Request  
+~~~  
+HTTP/1.1 400 Bad Request  
 Date: Sun, 18 Oct 2009 12:13:46 GMT  
 Server: Apache/2.2.14 (Win32)  
 Content-Length: 226  
 Connection: close  
-Content-Type: text/html; charset=iso-8859-1*  
+Content-Type: text/html; charset=iso-8859-1  
+~~~    
 
 ###Requerimientos GET condicionales  
 En todos los ejemplos previos, el servidor regresa el documento entero si el requerimiento  puede ser completado. Tu puedes usar un requerimiento adicionar “conditional request”. Por ejemplo, para preguntar por el documento basado en la última fecha de modificación (entonces se decide usar una copia del copy), para preguntar por una porción de un documento (o rango) del documento completo (usualmente descargando largos documentos).  
@@ -535,16 +595,20 @@ Si un cliente hace un requerimiento GET a “/testdir/” (al directorio).
 
 Si está interesado en tomar nota del cliente que hizo el requerimiento GET a “/testdir” (sin especificar la parte del directorio “/”), el servidor regresa un “301 Move Permanently” con una nueva localización de “/testdir/”, como se muestra:  
 
-*GET /testdir HTTP/1.1  
+~~~
+GET /testdir HTTP/1.1  
 Host: 127.0.0.1  
-(blank line)*  
+(blank line)  
+~~~    
 
-*HTTP/1.1 301 Moved Permanently  
+~~~  
+HTTP/1.1 301 Moved Permanently  
 Date: Sun, 18 Oct 2009 13:19:15 GMT  
 Server: Apache/2.2.14 (Win32)  
 Location: http://127.0.0.1:8000/testdir/  
 Content-Length: 238  
-Content-Type: text/html; charset=iso-8859-1*  
+Content-Type: text/html; charset=iso-8859-1  
+~~~    
 
 Más del navegador y lo que indica en el requerimiento a “/testdir/”. Por ejemplo, si tu ruta http://127.0.0.1:8000/testdir no posee “/” para el navegador, no se te va a notificar que fue agregada a la dirección después de que la respuesta fue dada. La moraleja de la historia es: tu deberías inculir la “/” para el requerimiento del directorio para salvar requerimientos adicionales GET.  
 
@@ -554,12 +618,15 @@ Al enviar un requerimiento GET a un servidor proxy, (a) estableces una conexión
 
 Las siguientes rutas fueron capturadas usando telnet. Una conexión es establecida con el servidor proxy, y un requerimiento GET. Un requerimiento a un absoluto URI es usada en la línea de petición.  
 
-*GET http://www.amazon.com/index.html HTTP/1.1  
+~~~  
+GET http://www.amazon.com/index.html HTTP/1.1  
 Host: www.amazon.com  
 Connection: Close  
-(blank line)*  
+(blank line)   
+~~~ 
 
-*HTTP/1.1 302 Found  
+~~~  
+HTTP/1.1 302 Found  
 Transfer-Encoding: chunked  
 Date: Fri, 27 Feb 2004 09:27:35 GMT  
 Content-Type: text/html; charset=iso-8859-1  
@@ -568,7 +635,8 @@ Server: Stronghold/2.4.2 Apache/1.3.6 C2NetEU/2412 (Unix)
 Set-Cookie: skin=; domain=.amazon.com; path=/; expires=Wed, 01-Aug-01 12:00:00 GMT  
 Connection: close  
 Location: http://www.amazon.com:80/exec/obidos/subst/home/home.html  
-Via: 1.1 xproxy (NetCache NetApp/5.3.1R4D5)*  
+Via: 1.1 xproxy (NetCache NetApp/5.3.1R4D5)  
+~~~  
 
 Toma nota que dé respuesta regresa un “chunks”.  
 
@@ -578,17 +646,22 @@ El requerimiento HEAD es similar al requerimiento GET. El servidor regresa solo 
 
 La sintaxis del requerimiento HEAD es el siguiente  
 
-*HEAD request-URI HTTP-version  
+~~~  
+HEAD request-URI HTTP-version  
 (other optional request headers)  
 (blank line)  
-(optional request body)*  
+(optional request body)  
+~~~  
 
 ####Ejemplo  
 
-*HEAD /index.html HTTP/1.0  
-(blank line)*  
+~~~  
+HEAD /index.html HTTP/1.0  
+(blank line)  
+~~~    
 
-*HTTP/1.1 200 OK  
+~~~  
+HTTP/1.1 200 OK  
 Date: Sun, 18 Oct 2009 14:09:16 GMT  
 Server: Apache/2.2.14 (Win32)  
 Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT  
@@ -597,7 +670,8 @@ Accept-Ranges: bytes
 Content-Length: 44  
 Connection: close  
 Content-Type: text/html  
-X-Pad: avoid browser bug*  
+X-Pad: avoid browser bug  
+~~~    
 
 Notifica que la respuesta consiste de la cabecera sola sin el cuerpo, el cual contiene el documento actual.  
 
@@ -605,9 +679,11 @@ Notifica que la respuesta consiste de la cabecera sola sin el cuerpo, el cual co
 
 Un cliente puede usar un requerimiento OPTIONS para que el servidor muestre los métodos de requerimientos que son soportados. La sintaxis del requerimiento de OPTIONS es el siguiente:  
 
-*OPTIONS request-URI|* HTTP-version  
+~~~  
+OPTIONS request-URI|* HTTP-version  
 (other optional headers)  
 (blank line)  
+~~~    
 
 “*” puede ser usado en lugar de una dirección para indicar que el requerimiento no aplica en un recurso en particular.  
 
@@ -615,12 +691,15 @@ Un cliente puede usar un requerimiento OPTIONS para que el servidor muestre los 
 
 Por ejemplo, las siguientes OPTIONS son enviadas de un servidor proxy:  
 
-*OPTIONS http://www.amazon.com/ HTTP/1.1  
+~~~  
+OPTIONS http://www.amazon.com/ HTTP/1.1  
 Host: www.amazon.com  
 Connection: Close  
-(blank line)*  
+(blank line)  
+~~~  
 
-*HTTP/1.1 200 OK  
+~~~  
+HTTP/1.1 200 OK  
 Date: Fri, 27 Feb 2004 09:42:46 GMT  
 Content-Length: 0  
 Connection: close  
@@ -628,7 +707,8 @@ Server: Stronghold/2.4.2 Apache/1.3.6 C2NetEU/2412 (Unix)
 Allow: GET, HEAD, POST, OPTIONS, TRACE  
 Connection: close  
 Via: 1.1 xproxy (NetCache NetApp/5.3.1R4D5)  
-(blank line)*  
+(blank line)  
+~~~  
 
 Todos los servidores soportan GET y como se ve el requerimiento HEAD. Algunas veces, HEAD no está listado.  
 
@@ -637,24 +717,568 @@ Un cliente puede enviar un requerimiento TRACE para preguntar al servidor que re
 
 Un requerimiento TRACE toma la siguiente sintaxis:  
 
-*TRACE / HTTP-version  
-(blank line)*  
+~~~  
+TRACE / HTTP-version  
+(blank line)  
+~~~  
 
 ####Ejemplo
 El siguiente ejemplo muestra un requerimiento de un servidor proxy.  
 
-*TRACE http://www.amazon.com/ HTTP/1.1  
+~~~  
+TRACE http://www.amazon.com/ HTTP/1.1  
 Host: www.amazon.com  
 Connection: Close  
-(blank line)*  
+(blank line)  
+~~~  
 
-*HTTP/1.1 200 OK  
+~~~  
+HTTP/1.1 200 OK  
 Transfer-Encoding: chunked  
 Date: Fri, 27 Feb 2004 09:44:21 GMT 
 Content-Type: message/http  
 Connection: close  
 Server: Stronghold/2.4.2 Apache/1.3.6 C2NetEU/2412 (Unix)  
 Connection: close  
-Via: 1.1 xproxy (NetCache NetApp/5.3.1R4D5)*  
+Via: 1.1 xproxy (NetCache NetApp/5.3.1R4D5)  
+~~~    
 
 (Compara el requerimiento TRACE con la ruta seguida).
+
+##Parte 3 (20 Septiembre 2016)
+
+###Formularios de presentación y cadena de datos en HTML
+
+En algunas aplicaciones de internet, como comercio electrónico y búsquedas, el cliente requiere que se suba información adicional al servidor (ej. Nombre, dirección, llaves de búsqueda). Basado en la información subida, el servidor toma una acción apropiada y produce una respuesta personalizada. 
+
+El cliente usualmente lo hace con un formulario (producido en HTML con la etiqueta `<form>`). Una vez que se llena la información requerida y se presiona el botón de subida, el navegador envía la información en forma de paquete, usando el requerimiento GET o POST.
+
+El siguiente es un ejemplo de formulario de HTML:
+
+~~~  
+<html>  
+<head><title>A Sample HTML Form</title></head>  
+<body>  
+  <h2 align="left">A Sample HTML Data Entry Form</h2>  
+  <form method="get" action="/bin/process">  
+    Enter your name: <input type="text" name="username"><br />  
+    Enter your password: <input type="password" name="password"><br />  
+    Which year?  
+    <input type="radio" name="year" value="2" />Yr 1  
+    <input type="radio" name="year" value="2" />Yr 2  
+    <input type="radio" name="year" value="3" />Yr 3<br />  
+    Subject registered:  
+    <input type="checkbox" name="subject" value="e101" />E101  
+    <input type="checkbox" name="subject" value="e102" />E102  
+    <input type="checkbox" name="subject" value="e103" />E103<br />  
+    Select Day:  
+    <select name="day">  
+      <option value="mon">Monday</option>  
+      <option value="wed">Wednesday</option>  
+      <option value="fri">Friday</option>  
+    </select><br />  
+    <textarea rows="3" cols="30">Enter your special request here</textarea><br />  
+    <input type="submit" value="SEND" />  
+    <input type="reset" value="CLEAR" />  
+    <input type="hidden" name="action" value="registration" />  
+  </form>  
+</body>  
+</html>  
+~~~  
+
+![](http://res.cloudinary.com/javierslx/image/upload/v1474327044/IMG10_bv46dw.png)
+
+Un formulario contiene campos. Los tipos de campo incluyen:  
+- Caja de texto: Producido por `<input type="text">`.  
+- Caja de contraseña: Producido por `<input type="password">`.  
+- Radio Button: Producido por `<input type="radio">`.  
+- Checkbox: Producido por `<input type="checkbox">`.  
+- Selection: Producido por `<select> and <option>`.  
+- Text Area: Producido por `<textarea>`.  
+- Submit Button: Producido por `<input type="submit">`.  
+- Reset Button: Producido por `<input type="reset">`.  
+- Hidden Field: Producido por `<input type="hidden">`.  
+- Button: Producido por `<input type="button">`.  
+
+Cada campo tiene un nombre y puede tomar un valor específico. Una vez que el cliente llena los campos y presiona el botón. El navegador toma los valores y los nombres de los campos, los empaqueta en pares como “name=value”, y concatena todos los valores juntos usando “&” como separador. Esto se conoce como cadena de datos. Después esta cadena es enviada al servidor como parte del requerimiento.
+
+`name1=value1&name2=value2&name3=value3&...`
+
+Caracteres especiales no se introducen dentro de la cadena. Estos son reemplazados por un “%” seguido de su código ASCII en hexadecimal. Ej. “~” es reemplazado por “%7E”, “#” por “%23” y así varios.  Los espacios en blanco pueden ser reemplazados por “%20” o “+” (el símbolo “+” puede ser reemplazado por “#2B”). Este proceso es llamado como codificación-URL, y el resultado como cadena de codificación URL. Por ejemplo, supongamos que hay 3 campos dentro del formulario, con nombre/valor de “name=Peter Lee”, “address=#123 Happy Ave” y “language=C++”, la cadena de codificación URL sería:
+
+`name=Peter+Lee&address=%23123+Happy+Ave&Language=C%2B%2B`
+
+La cadena puede ser enviada al servidor usando el método HTTP GET o POST, con un atributo específico del `<form>` llamado “method”.  
+
+`<form method="get|post" action="url">`
+
+Si GET es método de requerimiento usado, la cadena de codificación URL aparecerá detrás del requerimiento URI antecedido del carácter “?”, ej.  
+
+~~~  
+GET request-URI?query-string HTTP-version  
+(other optional request headers)  
+(blank line)  
+(optional request body)  
+~~~  
+
+Usando el requerimiento GET para enviar la cadena se sigue lo siguiente:  
+- Lo largo de los datos que aparecen detrás del requerimiento URI es limitado. Si la cantidad excede lo especifico del servidor, este regresará un error “414 Request URI too Large”.  
+- La cadena de codificación URI siempre aparecerá en la caja de direcciones del navegador.  
+
+El método POST en cambio sigue otras pautas. Si el método de requerimiento POST es usado, la cadena que enviará lo hará dentro del cuerpo del mensaje de requerimiento, donde la cantidad no está limitada. La cabecera de requerimiento Content-Type y Content-Length serán usadas para notificar al servidor el tipo y lo largo de la cadena. La cadena esta vez no aparecerá en la caja de direcciones del navegador. El método POST será discutido más tarde.
+
+####Ejemplo  
+El siguiente formulario HTML es usado para solicitar el usuario y contraseña de un menú de login.  
+
+~~~  
+<html>  
+<head><title>Login</title></head>  
+<body>  
+  <h2>LOGIN</h2>  
+  <form method="get" action="/bin/login">  
+    Username: <input type="text" name="user" size="25" /><br />  
+    Password: <input type="password" name="pw" size="10" /><br /><br />  
+    <input type="hidden" name="action" value="login" />  
+    <input type="submit" value="SEND" />  
+  </form>  
+</body>  
+</html>  
+~~~  
+
+![](http://res.cloudinary.com/javierslx/image/upload/v1474327044/IMG11_ovqlyl.png)
+
+El método GET de HTTP es usado para enviar la cadena de requerimiento. Supongamos que el usuario coloca “Peter Lee” como nombre de usuario, “123456” como contraseña; y le da clic al botón para subirla. El requerimiento GET es:
+
+~~~  
+GET /bin/login?user=Peter+Lee&pw=123456&action=login HTTP/1.1  
+Accept: image/gif, image/jpeg, */*  
+Referer: http://127.0.0.1:8000/login.html  
+Accept-Language: en-us  
+Accept-Encoding: gzip, deflate  
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)  
+Host: 127.0.0.1:8000  
+Connection: Keep-Alive  
+~~~  
+
+Nótese que la contraseña no se muestra en pantalla, pero es claramente visible en la caja de texto del navegador. Nunca se debe de enviar una contraseña sin una apropiada encriptación.
+
+`http://127.0.0.1:8000/bin/login?user=Peter+Lee&pw=123456&action=login`
+
+###URL y URI
+
+####URL (Localizador de Recursos Uniforme)
+
+Una URL, definido en RFC 2396, es usado como identificador único de un recurso en la web. La sintaxis de una URL es la siguiente:  
+
+`protocol://hostname:port/path-and-file-name`
+
+La URL contiene 4 partes:  
+1.	*Protocolo*. El protocolo usado por el cliente y el servidor, ej. HTTP, FTP, y telnet.  
+2.	*Hostname*. El nombre del dominio DNS (ej. www.nowhere123.com) o dirección IP (ej. 192.128.1.2) del servidor.  
+3.	*Puerto*. El número de puerto TCP del servidor en el que escucha los requerimientos del cliente.  
+4.	*Carpeta-y-nombre-archivo*. El nombre y la localización del recurso que se requiere, bajo un directorio base en el navegador.  
+
+Por ejemplo, en la URL http://www.nowhere123.com/docs/index.html, el protocolo de comunicación es HTTP; el hostname es www.nowhere123.com. El número de puerto no está especificado en la URL, por lo que toma el puerto por default, el cual es el 80 para HTTP. Carpeta y nombre del archivo esta localizado en “/docs”/index.html”.  
+
+Otros ejemplos de URL son: 
+
+~~~  
+ftp://www.ftp.org/docs/test.txt  
+mailto:user@test101.com  
+news:soc.culture.Singapore  
+telnet://www.nowhere123.com/  
+~~~  
+
+####URL codificada  
+
+Una URL no puede contener caracteres especiales, como espacios en blanco o ‘~’. Los caracteres especiales son codificados, en la forma de %xx, donde xx es el código hexadecimal ASCII. Por ejemplo, ‘~’ es codificado a %7e; ‘+’ es codificado a %2b. Un espacio en blanco puede ser codificado como %20 o ‘+’. Esto se le llama URL codificada.  
+
+####URI (Identificador de Recursos Uniforme)  
+
+URI, definida en RFC3986, es una URL más general, que puede localizar un fragmento de un recurso. La sintaxis de una URI en el protocolo HTTP es la siguiente:  
+
+`http://host:port/path?request-parameters#nameAnchor`  
+
+- Los parámetros de requerimiento, en forma de pares name=value, son separados de la URL por ‘?’. Los pares de name=value son separados por ‘&’.
+- El identificador #nameAnchor indica un fragmento del documento HTML, definido por la etiqueta <a name="anchorName">...</a>.  
+- La sesión de administrador de la URL, ej. "...;sessionID=xxxxxx".  
+
+###Método de requerimiento “POST”  
+
+El requerimiento POST es otro más para subir información al servidor (ej. Subir información de un formulario HTML o subir un archivo). Asumiento la URL HTTP del navegador del mismo GET. Para ser usado en un formulario HTML se le debe de dar como atributo al formulario de la forma method=”post” o escribirlo en el propio programa de red. Para subir la información HTML, POST requiere la misma forma que GET con excepción de la URL codificada ya que esta se envía en el cuerpo de requerimiento, tal aparece detrás del requerimiento URI.
+
+El requerimiento POST toma la siguiente sintaxis:
+
+~~~  
+POST request-URI HTTP-version  
+Content-Type: mime-type  
+Content-Length: number-of-bytes  
+(other optional request headers)  
+  
+(URL-encoded query string)  
+~~~
+
+Las cabeceras de requerimiento Content-Type y Content-Length son necesarias en el requerimiento POST para informarle al servidor acerca del tipo de información y lo largo del cuerpo de requerimiento
+
+####Ejemplo: Subiendo Información de Formulario usando el método de requerimiento POST
+
+Nosotros usamos el mismo script HTML que antes, pero cambiamos el método de requerimiento a POST.
+
+~~~  
+<html>  
+<head><title>Login</title></head>  
+<body>  
+  <h2>LOGIN</h2>  
+  <form method="post" action="/bin/login">  
+    Username: <input type="text" name="user" size="25" /><br />  
+    Password: <input type="password" name="pw" size="10" /><br /><br />  
+    <input type="hidden" name="action" value="login" />  
+    <input type="submit" value="SEND" />  
+  </form>  
+</body>  
+</html>  
+~~~  
+
+Supongamos que el usuario coloca “Peter Lee” como nombre de usuario y “123456” como contraseña, y le da clic al botón de envío, se genera lo siguiente por el navegador debido al requerimiento POST:
+
+~~~  
+POST /bin/login HTTP/1.1  
+Host: 127.0.0.1:8000  
+Accept: image/gif, image/jpeg, */*  
+Referer: http://127.0.0.1:8000/login.html  
+Accept-Language: en-us  
+Content-Type: application/x-www-form-urlencoded  
+Accept-Encoding: gzip, deflate  
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)  
+Content-Length: 37  
+Connection: Keep-Alive  
+Cache-Control: no-cache  
+   
+User=Peter+Lee&pw=123456&action=login  
+~~~
+
+Nótese que la cabecera Content-Type informa al servidor como la URL codificada (con un especial aplicación MIME/x-www-form-urlencoded), y la cabecera Content-Length le dice al servidor cuantos bytes leerá del cuerpo del mensaje.
+
+####POST vs GET para Subir Información de un Formulario  
+
+Como se mencionó en la sección previa, el requerimiento POST es más avanzado que el requerimiento GET enviando una cadena:  
+- La cantidad de información que envía POST es ilimitada, ya que usa el cuerpo del requerimiento, lo que ofrece enviar datos por separado al servidor.
+- La cadena de datos no se muestra en la caja de direcciones del navegador.
+
+Nótese que la contraseña no se mostrará en la caja de direcciones del navegador, es trasmitido al servidor como texto claro, y sujeto a leerse por la red. De cualquier forma, enviar una contraseña usando el requerimiento POST no es absolutamente seguro.
+
+####Subiendo archivos usando formulario/multipartes con requerimiento POST
+
+“RFC 1867: Formulario basado en subir archivos en HTML” especifica que un archivo puede ser subido al servidor usando requerimiento POST en un formulario HTML. Un nuevo atributo type=”file” fue agregado a la etiqueta `<input>` del `<form>` de HTML para el soporte de subida de archivos. La subida de archivos POST no usa codificación URL (en la estándar application/x-www-form-urlencoded), pero usa un nueva forma llamada multiparte/información de formulario.
+
+####Ejemplo  
+El siguiente formulario HTML puede ser usado para subir un archivo:  
+
+~~~  
+<html>  
+<head><title>File Upload</title></head>  
+<body>  
+  <h2>Upload File</h2>  
+  <form method="post" enctype="multipart/form-data" action="servlet/UploadServlet">  
+    Who are you: <input type="text" name="username" /><br />  
+    Choose the file to upload:  
+    <input type="file" name="fileID" /><br />  
+    <input type="submit" value="SEND" />  
+  </form>  
+</body>  
+</html>  
+~~~  
+
+![](http://res.cloudinary.com/javierslx/image/upload/v1474327044/IMG12_nwm96v.png)
+
+Cuando el navegador encuentra una etiqueta `<input>` con el atributo type=”file”, este muestra una caja de texto y botón “navegación…”, para que el usuario pueda elegir el archivo que va a subir.
+
+Cuando el usuario da clic al botón de envío, el navegador enviar la información del formulario y el contenido de los archivos seleccionados. La vieja codificación "application/x-www-form-urlencoded" es ineficiente para enviar información binaria y caracteres ASCII. Una nueva forma de "multipart/form-data" es usada.
+
+Cada parte identifica el nombre de ingreso con un formulario original HTML, y el tipo de contenido conocido.
+
+El nombre original del archivo no puede ser suplido con el parámetro “filename”, o en la cabecera “Content-Disposition: form-data”.
+
+Un ejemplo de un mensaje POST para subir archivos es el siguiente:
+
+~~~  
+POST /bin/upload HTTP/1.1  
+Host: test101 
+Accept: image/gif, image/jpeg, */*  
+Accept-Language: en-us  
+Content-Type: multipart/form-data;    boundary=---------------------------7d41b838504d8  
+Accept-Encoding: gzip, deflate  
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)  
+Content-Length: 342  
+Connection: Keep-Alive  
+Cache-Control: no-cache  
+   
+-----------------------------7d41b838504d8 Content-Disposition: form-data;    
+name="username"   
+Peter Lee  
+-----------------------------7d41b838504d8 Content-Disposition: form-data;   
+name="fileID"; filename="C:\temp.html" Content-Type: text/plain   
+<h1>Home page on main server</h1>   
+-----------------------------7d41b838504d8--  
+~~~
+
+Servlet 3.0 provee un archivo de soporte para la subida de archivos.
+
+###Método de requerimiento “CONNECT”
+
+El requerimiento HTPP CONNECT es usado para preguntar al proxy para hacer la conexión con otro host y simplificar el contenido, atendiendo un pase en el mensaje. Esto usado para hacer una conexión con un proxy.
+
+(Bajo construcción)
+
+###Otros métodos de requerimiento.
+PUT: Pregunta al servidor sobre el almacenamiento de la información.  
+DELETE: Pregunta al servidor sobre el borrado de la información.
+
+Por consideraciones de seguridad, PUT y DELETE no son soportados en algunos servidores.
+
+Métodos de extensión (como algunos errores y cabeceras) no pueden ser definidas para extender la funcionalidad del protocolo HTTP.
+
+###Negociación de contenido
+Como se mencionó anteriormente, HTTP soporta la negociación de contenido entre el cliente y el servidor. Un cliente puede usar cabeceras de requerimiento adicionales (como Accept-Language, Accept-Charset, Accept-Encoding) para decirle al servidor que puede hacer o que contenido prefiere. Si el servidor posee múltiples versiones del mismo documento en diferente formato, regresará el formato que el cliente prefiere. Este proceso es llamado negociación de contenido.
+
+###Negociación de tipo de contenido
+
+El servidor usa una configuración MIME para los archivos (llamado “conf\mime.types”) para mapear las extensiones de archivo a tipo de archivo, entonces puede de manera acertada buscar el tipo de archivo por medio sus extensiones. Por ejemplo, las extensiones de archivo “.htm”, “.html” están asociadas con tipo MIME de “text/html”, la extensión de “.jpg”, “.jpeg” están asociadas con “image/jpeg”. Cuando un archivo es regresado al cliente, el cliente lo coloca de respuesta de cabecera en Content-Type e informa al cliente sobre el tipo de información.
+
+Para la negociación de tipo de contenido, supongamos que el cliente requiere un archivo llamado “logo” sin especificar el tipo, y envía la cabecera “Accept: image/gif, image/jpeg, …”. Si el servidor tiene 2 formatos de “logo”: “logo.gif” y “logo.jpg”, la configuración MIME tendrá las siguientes entradas:
+
+~~~  
+image/gif        gif  
+image/jpeg       jpeg jpg jpe  
+~~~  
+
+El servidor regresará “logo.gif” al cliente, basándose en la cabecera Accept del cliente, y el mapeado MIME type/file. El servidor incluirá una cabecera “Content-type: image/gif” en su respuesta.
+
+El mensaje trazado es el siguiente:
+
+~~~  
+GET /logo HTTP/1.1  
+Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg,  
+  application/x-shockwave-flash, application/vnd.ms-excel,   
+  application/vnd.ms-powerpoint, application/msword, */*  
+Accept-Language: en-us  
+Accept-Encoding: gzip, deflate  
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)  
+Host: test101:8080  
+Connection: Keep-Alive  
+(blank line)  
+~~~
+
+~~~
+HTTP/1.1 200 OK  
+Date: Sun, 29 Feb 2004 01:42:22 GMT  
+Server: Apache/1.3.29 (Win32)  
+Content-Location: logo.gif  
+Vary: negotiate,accept  
+TCN: choice  
+Last-Modified: Wed, 21 Feb 1996 19:45:52 GMT  
+ETag: "0-916-312b7670;404142de"  
+Accept-Ranges: bytes  
+Content-Length: 2326  
+Keep-Alive: timeout=15, max=100  
+Connection: Keep-Alive  
+Content-Type: image/gif  
+(blank line)  
+(body omitted)  
+~~~  
+
+Aquí el servidor tiene 3 archivos “logo.*”, “logo.gif”, “logo.html”, “logo.jpg” y “Accept: */*” es usado:
+
+~~~  
+GET /logo HTTP/1.1  
+Accept: */*  
+Accept-Language: en-us  
+Accept-Encoding: gzip, deflate  
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)  
+Host: test101:8080  
+Connection: Keep-Alive  
+(blank line)  
+~~~  
+
+~~~  
+HTTP/1.1 200 OK  
+Date: Sun, 29 Feb 2004 01:48:16 GMT  
+Server: Apache/1.3.29 (Win32)  
+Content-Location: logo.html  
+Vary: negotiate,accept  
+TCN: choice  
+Last-Modified: Fri, 20 Feb 2004 04:31:17 GMT  
+ETag: "0-10-40358d95;404144c1"  
+Accept-Ranges: bytes  
+Content-Length: 16  
+Keep-Alive: timeout=15, max=100  
+Connection: Keep-Alive  
+Content-Type: text/html  
+(blank line)  
+(body omitted)  
+~~~  
+
+`Accept: */*`
+
+La siguiente configuración Apache revela la negociación de tipo de contenido:
+
+- La directiva TypeConfig puede ser usada para especificar la localización del archivo de mapeado MIME:  
+`TypeConfig conf/mime.types`
+
+- La directiva AddType puede ser usada para incluir tipo de mapeado adicionales al archivo de configuración:  
+`AddType mime-type extension1 [extension2]`
+
+- La directiva DefaultType da al tipo MIME una extensión desconocida (en la cabecera de respuesta Content-Type).  
+`DefaultType text/plain`
+
+###Negociación de lenguaje y “Opciones multivista”
+
+Las “Opciones multivista” es un simple camino para implementar negociación de lenguaje. Por ejemplo:
+
+~~~  
+AddLanguage en .en  
+<Directory "C:/_javabin/Apache1.3.29/htdocs">  
+    Options Indexes MultiViews  
+</Directory>  
+~~~  
+
+Supongamos que el cliente requiere “index.html” y envía un requerimiento “Accept-Language: en-us”. Si el servidor que tiene “test.html”, “test.html.en” y “test.html.cn”, basado en las preferencias del cliente, regresará “test.html.en” (“en” incluye “en-us”).
+
+Un mensaje de tal caso es el siguiente:  
+
+~~~  
+GET /index.html HTTP/1.1  
+Accept: */*  
+Accept-Language: en-us  
+Accept-Encoding: gzip, deflate  
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)  
+Host: test101:8080  
+Connection: Keep-Alive  
+(blank line)  
+~~~
+
+~~~  
+HTTP/1.1 200 OK  
+Date: Sun, 29 Feb 2004 02:08:29 GMT  
+Server: Apache/1.3.29 (Win32)  
+Content-Location: index.html.en  
+Vary: negotiate  
+TCN: choice  
+Last-Modified: Sun, 29 Feb 2004 02:07:45 GMT  
+ETag: "0-13-40414971;40414964"  
+Accept-Ranges: bytes  
+Content-Length: 19  
+Keep-Alive: timeout=15, max=100  
+Connection: Keep-Alive  
+Content-Type: text/html  
+Content-Language: en  
+(blank line)  
+(body omitted)  
+~~~
+
+La directiva AddLanguage se necesita para asociar el código de lenguaje y su extensión, similar al mapeado MIME type/file.
+
+Nótese que la directiva “Options All” no incluye la opción “MultiViews”. Eso es, porque hay que especificar el cambio a Mulvistas.
+
+La directiva LanguagePriority puede ser usada para especificar el lenguaje de preferencia en caso de una negociación de contenido o si el cliente no especifica su prefencia. Por ejemplo:
+
+~~~  
+<IfModule mod_negotiation.c>  
+   LanguagePriority en da nl et fr de el it ja kr no pl pt pt-br  
+</IfModule>  
+~~~  
+
+###Negociación de colocación de caracteres
+
+Un cliente puede usar la cabecera de requerimiento Accept-Charset para negociar con el servidor la colocación de caracteres de su preferencia.
+
+`Accept-Charset: charset-1, charset-2, ...`
+
+Los paquetes más comúnmente de caracteres usados son: ISO-8859-1 (Latin-I), ISO-8859-2, ISO-8859-5, BIG5 (Chinese Traditional), GB2312 (Chinese Simplified), UCS2 (2-byte Unicode), UCS4 (4-byte Unicode), UTF8 (Encoded Unicode), y etc.
+
+Similarmente, la directiva AddCharset es usada para asociar la extensión del archivo al paquete de caracteres. Por ejemplo:
+
+~~~  
+AddCharset ISO-8859-8   .iso8859-8  
+AddCharset ISO-2022-JP  .jis  
+AddCharset Big5         .Big5  .big5  
+AddCharset WINDOWS-1251 .cp-1251  
+AddCharset CP866        .cp866  
+AddCharset ISO-8859-5   .iso-ru  
+AddCharset KOI8-R       .koi8-r  
+AddCharset UCS-2        .ucs2  
+AddCharset UCS-4        .ucs4  
+AddCharset UTF-8        .utf8  
+~~~  
+
+###Negociación de codificación
+
+Un cliente puede usar la cabecera Accept-Encoding para decirle al servidor el tipo de codificación que soporta. Los tipos de codificación más comunes son: "x-gzip (.gz, .tgz)" y "x-compress (.Z)". 
+
+`Accept-Encoding: encoding-method-1, encoding-method-2, ...`
+
+Similarmente, la directiva AddEncoding es usada para asociar la extensión del archivo a lo que se encuentra. Por ejemplo:
+
+`Accept-Encoding: encoding-method-1, encoding-method-2, ...`
+
+###Conexiones persistentes (o mantenidas vivas)
+
+En HTTP/1.0, el servidor cierra la conexión TCP después de deliberar la respuesta por default (Connection: Close). Eso es porque cada conexión TCP requiere un requerimiento. Esto no es eficiente en algunas páginas HTML que contengan hiperlinks (etiqueta `<a href=”url”>`) a otros recursos (sean imágenes, o scripts a servidores remotos). Si tú página descarga 5 imágenes, el navegador establece 6 conexiones TCP al mismo servidor.
+
+El cliente puede negociar con el servidor y preguntar que no cierre la conexión después de deliberar una respuesta, para que otro requerimiento pueda ser enviado a la misma conexión. Esto es llamado conexión persistente (o conexión de mantenimiento en vida). Gracias a las conexiones persistentes se da una mayor eficiencia en la red. Para HTTP/1.0, la conexión por default no es persistente. Para requerir una conexión persistente, el cliente debe incluir una cabecera de requerimiento “Connection: Keep-alive” en el mensaje de requerimiento para negociar con el servidor.
+
+Para HTTP/1.1, la conexión por default es persistente. El cliente no requiere enviar la cabecera “Connection: Keep-alive”. Por el contrario, el cliente puede enviar la cabecera “Connection: Close” para preguntar al servidor si cierra la conexión después de deliberar la respuesta.
+
+La conexión persistente es extremadamente útil para páginas web con pequeños iconos y datos asociados, todo esto puede ser descargado usando una misma conexión. Los beneficios de una conexión persistente son:
+
+- El tiempo de CPU y los recursos ahorrados en una conexión abierta y cerrada en el cliente, proxy, puentes de enlace, y el servidor original.  
+- Los requerimientos pueden ser eficientes. Eso es, un cliente puede hacer variados requerimientos sin esperar cada respuesta, haciendo la red más eficiente.  
+- La respuesta rápida no necesita de la configuración de la conexión TCP.
+
+En un servidor Apache HTTP, diversas configuraciones son relacionadas a las conexiones persistentes:
+
+La directiva KeepAlive decide cuando se soporta las conexiones persistente. Este toma el valor de On y Off.
+
+`KeepAlive On|Off`
+
+La directiva MaxKeepAliveRequests envía un número máximo de requerimientos para enviar en una conexión persistente. Tú puedes poner 0 a un ilimitado número de requerimientos. Es recomendable colocar un número muy alto para realizar una eficiencia mayor en la red.
+
+`MaxKeepAliveRequests 200`
+
+La directiva KeepAliveTimeOut coloca los segundos que la conexión persistente debe de esperar para el siguiente requerimiento.
+
+`KeepAliveTimeout 10`
+
+###Rango de descarga
+
+~~~  
+Accept-Ranges: bytes  
+Transfer-Encoding: chunked  
+~~~
+
+(bajo construcción)
+
+###Control Cache
+
+El cliente puede usar la cabecera de requerimiento “Cache-control: no-cache” para decirle al proxy y obtener una copia fresca del servidor original, en caso de que hay una copia de memoria local. Desafortunadamente, los servidores HTTP/1.0 no entienden esta cabecera, pero usa una vieja cabecera de requerimiento “Pragma: no-cache”. Tú no puedes incluir estas cabeceras en tu requerimiento.
+
+~~~  
+Pragma: no-cache  
+Cache-Control: no-cache  
+~~~
+
+(Más, bajo construcción).
+
+###Recursos y referencias
+- W3C HTTP specifications at http://www.w3.org/standards/techs/http.  
+- RFC 2616 "Hypertext Transfer Protocol HTTP/1.1", 1999 @ http://www.ietf.org/rfc/rfc2616.txt.  
+- RFC 1945 "Hypertext Transfer Protocol HTTP/1.0", 1996 @ http://www.ietf.org/rfc/rfc1945.txt.  
+- STD 2: "Assigned numbers", 1994.  
+- STD 5: "Internet Protocol (IP)", 1981.  
+- STD 6: "User Datagram Protocol (UDP)", 1980.  
+- STD 7: "Transmission Control Protocol (TCP)", 1983.  
+- RFC 2396: "Uniform Resource Identifiers (URI): Generic Syntax", 1998.  
+- RFC 2045: "Multipurpose Internet Mail Extension (MIME) Part 1: Format of Internet Message Bodies", 1996.  
+- RFC 1867: "Form-based File upload in HTML", 1995, (obsoleted by RFC2854).  
+- RFC 2854: "The text/html media type", 2000.  
+- Mutlipart Servlet for file upload @ www.servlets.com  
